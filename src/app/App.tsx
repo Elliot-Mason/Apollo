@@ -86,7 +86,20 @@ function App() {
       </div>
     );
   }
+  function formatDate(dateString: string | null | undefined): string {
+    if (!dateString) {
+      return "N/A"; // Handle cases where the date string is not available
+    }
 
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  }
 
   const cardIndices = responseData.data ? Array.from(Array(responseData.data.data.data.length).keys()) : [];
 
@@ -116,7 +129,13 @@ function App() {
                   Active:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.screen_active, null, 2)}
+                  {/* {JSON.stringify(responseData.data.data.screen.screen_active, null, 2)} */
+                    responseData.data ? (
+                      responseData.data.data.screen.screen_active === 1 ? " Yes" : " No"
+                    ) : (
+                      "Loading..." // You can display a loading message here while data is being fetched
+                    )
+                  }
                 </span>
               </div>
             </div>
@@ -126,7 +145,7 @@ function App() {
                   Screen ID:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.screen_id, null, 2)}
+                  {JSON.stringify(responseData.data.data.screen.screen_id, null, 2)} 
                 </span>
               </div>
               <div className="content_card">
@@ -134,7 +153,7 @@ function App() {
                   Height:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.screen_height, null, 2)}
+                  {JSON.stringify(responseData.data.data.screen.screen_height, null, 2) + "px"}
                 </span>
               </div>
             </div>
@@ -152,7 +171,7 @@ function App() {
                   Width:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.screen_width, null, 2)}
+                  {JSON.stringify(responseData.data.data.screen.screen_width, null, 2) + "px"}
                 </span>
               </div>
             </div>
@@ -162,7 +181,7 @@ function App() {
                   Profiles ID:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.profile.id, null, 2)}
+                  {JSON.stringify(responseData.data.data.profile.id, null, 2)} 
                 </span>
               </div>
               <div className="content_card">
@@ -170,7 +189,13 @@ function App() {
                   Ad Only:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.user_screens_advert_only, null, 2)}
+                  {/* {JSON.stringify(responseData.data.data.screen.user_screens_advert_only, null, 2)} */
+                    responseData.data ? (
+                      responseData.data.data.screen.screen_active === 1 ? " No" : " Yes"
+                    ) : (
+                      "Loading..." // You can display a loading message here while data is being fetched
+                    )
+                  }
                 </span>
               </div>
             </div>
@@ -180,7 +205,14 @@ function App() {
                   Last Sync:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.user_screens_last_sync, null, 2)}
+                  {/* {JSON.stringify(responseData.data.data.screen.user_screens_last_sync, null, 2)} */
+                    responseData.data ? (
+                      formatDate(responseData.data.data.screen.user_screens_last_sync)
+                    ) : (
+                      "Loading..." // You can display a loading message here while data is being fetched
+                    )
+                  }
+
                 </span>
               </div>
               <div className="content_card">
@@ -189,7 +221,13 @@ function App() {
                 </span>
                 <span className="text">
                   {
-                  JSON.stringify(responseData.data.data.screen.user_screens_random_adverts, null, 2)}
+                    // JSON.stringify(responseData.data.data.screen.user_screens_random_adverts, null, 2)
+                    responseData.data ? (
+                      responseData.data.data.screen.screen_active === 1 ? " No" : " Yes"
+                    ) : (
+                      "Loading..." // You can display a loading message here while data is being fetched
+                    )
+                  }
                 </span>
               </div>
             </div>
@@ -207,7 +245,13 @@ function App() {
                   Publish Block:
                 </span>
                 <span className="text">
-                  {JSON.stringify(responseData.data.data.screen.user_screens_publish_block, null, 2)}
+                  {/* {JSON.stringify(responseData.data.data.screen.user_screens_publish_block, null, 2)} */
+                    responseData.data ? (
+                      responseData.data.data.screen.screen_active === 1 ? " No" : " Yes"
+                    ) : (
+                      "Loading..." // You can display a loading message here while data is being fetched
+                    )
+                  }
                 </span>
               </div>
             </div>
